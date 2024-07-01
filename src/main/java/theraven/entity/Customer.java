@@ -15,8 +15,8 @@ import org.hibernate.annotations.SQLRestriction;
 @Getter
 @Setter
 @Table(name = "customers")
-@SQLDelete(sql= "UPDATE customers SET is_active = false WHERE id=?")
-@SQLRestriction(value = "is_active=true")
+@SQLDelete(sql= "UPDATE customers SET is_active = true WHERE id=?")
+@SQLRestriction(value = "is_active=false")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
