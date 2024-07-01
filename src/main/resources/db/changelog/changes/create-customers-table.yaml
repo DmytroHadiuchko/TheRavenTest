@@ -30,7 +30,7 @@ databaseChangeLog:
               - column:
                   name: is_active
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:

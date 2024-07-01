@@ -5,6 +5,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import theraven.dto.request.CustomerRequestDto;
+import theraven.dto.request.UpdateCustomerRequestDto;
 import theraven.dto.response.CustomerResponseDto;
 import theraven.entity.Customer;
 import theraven.mapper.CustomerMapper;
@@ -39,12 +40,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponseDto updateCustomer(CustomerRequestDto updateDto, Long id) {
+    public CustomerResponseDto updateCustomer(UpdateCustomerRequestDto updateDto, Long id) {
         Customer customer = customerRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can't find customer by id: " + id));
         customer.setFullName(updateDto.getFullName());
         customer.setPhone(updateDto.getPhone());
-        customer.setEmail(updateDto.getEmail());
         customer.setUpdated(System.currentTimeMillis());
         return customerMapper.toDto(customerRepository.save(customer));
     }
