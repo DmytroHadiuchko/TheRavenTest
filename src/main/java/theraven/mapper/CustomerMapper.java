@@ -1,7 +1,7 @@
 package theraven.mapper;
 
 import theraven.config.MapperConfig;
-import theraven.dto.request.CustomerRequestDto;
+import theraven.dto.request.CreateCustomerRequestDto;
 import theraven.dto.response.CustomerResponseDto;
 import theraven.entity.Customer;
 import org.mapstruct.Mapper;
@@ -10,5 +10,5 @@ import org.mapstruct.Mapper;
 public interface CustomerMapper {
     CustomerResponseDto toDto(Customer customer);
 
-    Customer toEntity(CustomerRequestDto requestDto);
+    Customer toEntity(CreateCustomerRequestDto requestDto);
 }

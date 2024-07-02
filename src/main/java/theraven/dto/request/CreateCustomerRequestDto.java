@@ -6,7 +6,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
-public class CustomerRequestDto {
+public class CreateCustomerRequestDto {
     @Length(min = 2, max = 50, message = "Full name must be between 2 and 50 characters")
     private String fullName;
     @Email(message = "Email should be valid and correctly formatted")
