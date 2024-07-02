@@ -13,6 +13,8 @@ The application uses a relational database to persist customer data.
 - **MySQL**: A widely-used open-source relational database system, 
 chosen for its reliability, ease of use, and support for complex queries 
 and transactions.
+### API Documentation:
+- **Swagger/OpenApi**: Tools for generating and visualizing API documentation, making it easier to understand and use the API endpoints.
 
 ### Development Environment:
 - **IntelliJ IDEA**: An integrated development environment for Java development.
