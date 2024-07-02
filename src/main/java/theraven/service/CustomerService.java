@@ -1,15 +1,15 @@
 package theraven.service;
 
 import java.util.List;
-import theraven.dto.request.CustomerRequestDto;
+import theraven.dto.request.CreateCustomerRequestDto;
 import theraven.dto.request.UpdateCustomerRequestDto;
 import theraven.dto.response.CustomerResponseDto;
 
 public interface CustomerService {
 
-    CustomerResponseDto createCustomer(CustomerRequestDto requestDto);
+    CustomerResponseDto createCustomer(CreateCustomerRequestDto requestDto);
 
-    List<CustomerResponseDto> getAllCustomer();
+    List<CustomerResponseDto> getAllCustomers();
 
     CustomerResponseDto getCustomerById(Long id);
 

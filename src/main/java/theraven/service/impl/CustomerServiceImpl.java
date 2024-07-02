@@ -4,7 +4,7 @@ import java.util.List;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import theraven.dto.request.CustomerRequestDto;
+import theraven.dto.request.CreateCustomerRequestDto;
 import theraven.dto.request.UpdateCustomerRequestDto;
 import theraven.dto.response.CustomerResponseDto;
 import theraven.entity.Customer;
@@ -19,14 +19,14 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerMapper customerMapper;
 
     @Override
-    public CustomerResponseDto createCustomer(CustomerRequestDto requestDto) {
+    public CustomerResponseDto createCustomer(CreateCustomerRequestDto requestDto) {
         Customer customer = customerMapper.toEntity(requestDto);
         customer.setCreated(System.currentTimeMillis());
         return customerMapper.toDto(customerRepository.save(customer));
     }
 
     @Override
-    public List<CustomerResponseDto> getAllCustomer() {
+    public List<CustomerResponseDto> getAllCustomers() {
         return customerRepository.findAll().stream()
                 .map(customerMapper::toDto)
                 .toList();
@@ -41,8 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponseDto updateCustomer(UpdateCustomerRequestDto updateDto, Long id) {
-        Customer customer = customerRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find customer by id: " + id));
+        Customer customer = findCustomerById(id);
         customer.setFullName(updateDto.getFullName());
         customer.setPhone(updateDto.getPhone());
         customer.setUpdated(System.currentTimeMillis());
@@ -51,6 +50,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomerById(Long id) {
+        findCustomerById(id);
         customerRepository.deleteById(id);
+    }
+
+    private Customer findCustomerById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Can't find customer by id: " + id));
     }
 }

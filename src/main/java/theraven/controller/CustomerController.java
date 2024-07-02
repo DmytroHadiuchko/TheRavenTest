@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import theraven.dto.request.CustomerRequestDto;
+import theraven.dto.request.CreateCustomerRequestDto;
 import theraven.dto.request.UpdateCustomerRequestDto;
 import theraven.dto.response.CustomerResponseDto;
 import theraven.service.CustomerService;
@@ -26,13 +26,13 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerResponseDto createCustomer(@Valid @RequestBody CustomerRequestDto customerRequestDto) {
+    public CustomerResponseDto createCustomer(@Valid @RequestBody CreateCustomerRequestDto customerRequestDto) {
         return customerService.createCustomer(customerRequestDto);
     }
 
     @GetMapping
     public List<CustomerResponseDto> getAllCustomers() {
-        return customerService.getAllCustomer();
+        return customerService.getAllCustomers();
     }
 
     @GetMapping("/{id}")
